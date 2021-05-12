@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="false">
+	<property name="log_name" value="smt-log"/>
+	<property name="log_home" value="logs"/>
+	<property name="custom_log_pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %level %logger.%M -%msg%n"/>
+	<property name="custom_log_filename_pattern" value="%d{yyyy-MM-dd}.%i.log" />
+
+	<contextName>${log_name}</contextName>
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder>
+	        <pattern>${custom_log_pattern}</pattern>
+	    </encoder>
+	</appender>
+
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log_home}/${log_name}.log</file>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		    <fileNamePattern>${log_home}/${log_name}.${custom_log_filename_pattern}</fileNamePattern>
+			<maxHistory>60</maxHistory>
+	
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100 mb</maxFileSize>
+	        </timeBasedFileNamingAndTriggeringPolicy>
+	    </rollingPolicy>
+	    
+		<encoder>
+			<pattern>${custom_log_pattern}</pattern>
+		</encoder>
+	</appender>
+	
+	<root level="info">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+	</root>
+</configuration>

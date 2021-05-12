@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping-configuration>
+	<table name="LOG_OPERATION" class="com.smt.parent.code.filters.log.LogOperation" createMode="create" strict="true">
+		<columns>
+			<column name="ID" property="id" dataType="number" length="10" />
+			<column name="BATCH" property="batch" dataType="char" length="36"/>
+			<column name="LEVEL_" property="level" dataType="number" length="2" />
+			<column name="DESCRIPTION" property="description" dataType="nstring" length="100" />
+			<column name="MODULE_ID" property="moduleId" dataType="char" length="36" />
+			<column name="MODULE_NAME" property="moduleName" dataType="nstring" length="100" />
+			<column name="COMPONENT_ID" property="componentId" dataType="char" length="36" />
+			<column name="COMPONENT_NAME" property="componentName" dataType="nstring" length="100" />
+			<column name="FUNC_ID" property="funcId" dataType="char" length="36" />
+			<column name="FUNC_NAME" property="funcName" dataType="nstring" length="100" />
+			<column name="CLIENT_TYPE" property="clientType" dataType="number" length="2"/>
+			<column name="CLIENT_INSTANCE_NAME" property="clientInstanceName" dataType="string" length="100" />
+			<column name="CLIENT_IP" property="clientIp" dataType="string" length="20" />
+			<column name="CLIENT_MAC" property="clientMAC" dataType="string" length="50" />
+			<column name="USER_ID" property="userId" dataType="char" length="36" nullable="false"/>
+			<column name="OPER_DATE" property="operDate" dataType="datetime" nullable="false"/>
+		</columns>
+		
+		<constraints>
+			<constraint type="PRIMARY_KEY" isAutoIncrement="true">
+				<column name="ID" />
+			</constraint>
+		</constraints>
+	</table>
+</mapping-configuration>

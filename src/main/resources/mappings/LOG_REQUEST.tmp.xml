@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping-configuration>
+	<table name="LOG_REQUEST" class="com.smt.parent.code.filters.log.LogRequest" createMode="create" strict="true">
+		<columns>
+			<column name="ID" property="id" dataType="number" length="10" />
+			<column name="OPERATION_ID" property="operationId" dataType="number" length="1" nullable="false"/>
+			<column name="API_ADDR" property="apiAddr" dataType="string" length="200" nullable="false"/>
+			<column name="METHOD" property="method" dataType="string" length="7" nullable="false"/>
+			<column name="URL_DATA" property="urlData" dataType="string" length="500"/>
+			<column name="REQ_BODY" property="reqBody" dataType="clob"/>
+			<column name="REQ_DATE" property="reqDate" dataType="datetime" nullable="false"/>
+			<column name="RESP_BODY" property="respBody" dataType="clob"/>
+			<column name="RESP_DATE" property="respDate" dataType="datetime" nullable="false"/>
+			<column name="STATE" property="state" dataType="number" length="1" nullable="false"/>
+			<column name="ORDER_" property="order" dataType="number" length="2" nullable="false"/>
+			<column name="DESCRIPTION" property="description" dataType="nstring" length="100" />
+		</columns>
+		
+		<constraints>
+			<constraint type="PRIMARY_KEY" isAutoIncrement="true">
+				<column name="ID" />
+			</constraint>
+		</constraints>
+	</table>
+</mapping-configuration>
