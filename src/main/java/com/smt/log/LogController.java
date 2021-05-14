@@ -35,4 +35,14 @@ public class LogController {
 		service.add(operation);
 		return new Response(operation);
 	}
+	
+	/**
+	 * 记录日志(不验证token)
+	 * @param operation
+	 * @return
+	 */
+	@RequestMapping(value="/add_", method=RequestMethod.POST)
+	public Response addBuiltIn(@RequestBody LogOperation operation) {
+		return add(operation);
+	}
 }

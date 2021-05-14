@@ -23,6 +23,9 @@ smt:
           access-control-max-age: 1800
         log:
           enable: false
+        token:
+          ignore-url-patterns:
+          - /log/add_
 
 spring:
   datasource:

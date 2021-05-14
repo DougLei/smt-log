@@ -1,0 +1,63 @@
+*********************************************************************************
+主动记录日志
+*********************************************************************************
+
+--增加
+http://192.168.1.111:8102/log/add
+POST
+{
+	"moduleId":"moduleId", 
+	"moduleName":"moduleName",
+
+	"componentId":"componentId",
+	"componentName":"componentName",
+
+	"funcId":"funcId",
+	"funcName":"funcName",
+
+	"userId":"userId", --操作人id
+	"description":"" --描述
+}
+
+备注: 与 LOG_OPERATION_1 表相比, 这次调整, 删除了 LANGUAGE, USER_NAME 两个列, 所以不需要再提交这两个数据; LEVEL 列未被删除, 但是现在也暂时不需要提交其数据
+
+*********************************************************************************
+协助(后端)记录日志
+*********************************************************************************
+
+在header中增加一个名为_log的json字符串即可, json的具体格式如下:
+
+{
+	"moduleId":"moduleId", 
+	"moduleName":"moduleName",
+
+	"componentId":"componentId",
+	"componentName":"componentName",
+
+	"funcId":"funcId",
+	"funcName":"funcName",
+
+	"userId":"userId", --操作人id
+	"description":"" --描述
+}
+
+示例: "_log": "{'moduleId':'moduleId','funcId':'funcId', 'userId':'douglei'}"
+
+
+*********************************************************************************
+其他说明
+*********************************************************************************
+
+1. LOG_REQUEST 表中的 IS_SUCCESS 字段含义: 1(成功), 2(部分成功), 0(失败), -1(异常)
+
+2. 42项目后端目前未集成后端登录功能, 所以无法从token中获取userId, 需要从前端传入userId
+
+3. 日志相关表存在于 SMT_DEV数据库中, 其中: 
+
+操作信息表(主表): select * from LOG_OPERATION
+
+请求信息表(子表): select * from LOG_REQUEST 
+
+两表间关联字段为: LOG_REQUEST 表中的 OPERATION_ID 列
+
+原 LOG_OPERATION_1 表可以被删除了
