@@ -1,6 +1,6 @@
 server:
   max-http-header-size: 10000
-  port: 8102
+  port: 8503
 
 jdb:
   orm:
@@ -11,7 +11,7 @@ jdb:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.111:8101/eureka/
+      defaultZone: http://192.168.1.252:8501/eureka/
 
 smt:
   parent:
@@ -30,7 +30,7 @@ smt:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:sqlserver://localhost:1433;DatabaseName=SMT_LOG
+    url: jdbc:sqlserver://localhost:1433;DatabaseName=SMT_ALL
     username: sa
     password: root
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
