@@ -12,10 +12,7 @@
 			<column name="COMPONENT_NAME" property="componentName" dataType="nstring" length="100" />
 			<column name="FUNC_ID" property="funcId" dataType="char" length="36" />
 			<column name="FUNC_NAME" property="funcName" dataType="nstring" length="100" />
-			<column name="CLIENT_TYPE" property="clientType" dataType="number" length="2"/>
-			<column name="CLIENT_INSTANCE_NAME" property="clientInstanceName" dataType="string" length="100" />
 			<column name="CLIENT_IP" property="clientIp" dataType="string" length="20" />
-			<column name="CLIENT_MAC" property="clientMAC" dataType="string" length="50" />
 			<column name="USER_ID" property="userId" dataType="char" length="36" nullable="false"/>
 			<column name="OPER_DATE" property="operDate" dataType="datetime" nullable="false"/>
 		</columns>
