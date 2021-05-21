@@ -34,8 +34,6 @@ public class LogController {
 	 */
 	@RequestMapping(value="/add_", method=RequestMethod.POST)
 	public Response add_(@RequestBody LogOperation operation, HttpServletRequest request) {
-		// TODO 后续需要增加约束, 只有其他服务发过来的请求才能正常调用
-		
 		return service.add(operation);
 	}
 	
