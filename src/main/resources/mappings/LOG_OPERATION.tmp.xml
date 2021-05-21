@@ -4,6 +4,7 @@
 		<columns>
 			<column name="ID" property="id" dataType="number" length="10" />
 			<column name="BATCH" property="batch" dataType="char" length="36"/>
+			<column name="TYPE_" property="type" dataType="number" length="2" />
 			<column name="LEVEL_" property="level" dataType="number" length="2" />
 			<column name="DESCRIPTION" property="description" dataType="nstring" length="100" />
 			<column name="MODULE_ID" property="moduleId" dataType="char" length="36" />

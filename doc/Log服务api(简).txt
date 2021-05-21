@@ -3,9 +3,11 @@
 *********************************************************************************
 
 --增加
-http://192.168.1.111:8102/log/add
+http://192.168.1.111:8503/log/add
 POST
 {
+	"type": 1, --操作类型, 值从0~99, 自定义, 可不传, 不传时表示一般操作类型; 例如1表示登录, 2表示退出...
+	
 	"moduleId":"moduleId", 
 	"moduleName":"moduleName",
 
@@ -14,8 +16,7 @@ POST
 
 	"funcId":"funcId",
 	"funcName":"funcName",
-
-	"userId":"userId", --操作人id
+	
 	"description":"" --描述
 }
 
@@ -28,6 +29,8 @@ POST
 在header中增加一个名为_log的json字符串即可, json的具体格式如下:
 
 {
+	"type": 1, --操作类型, 值从0~99, 自定义, 可不传, 不传时表示一般操作类型; 例如1表示登录, 2表示退出...
+
 	"moduleId":"moduleId", 
 	"moduleName":"moduleName",
 
@@ -37,27 +40,7 @@ POST
 	"funcId":"funcId",
 	"funcName":"funcName",
 
-	"userId":"userId", --操作人id
 	"description":"" --描述
 }
 
-示例: "_log": "{'moduleId':'moduleId','funcId':'funcId', 'userId':'douglei'}"
-
-
-*********************************************************************************
-其他说明
-*********************************************************************************
-
-1. LOG_REQUEST 表中的 IS_SUCCESS 字段含义: 1(成功), 2(部分成功), 0(失败), -1(异常)
-
-2. 42项目后端目前未集成后端登录功能, 所以无法从token中获取userId, 需要从前端传入userId
-
-3. 日志相关表存在于 SMT_DEV数据库中, 其中: 
-
-操作信息表(主表): select * from LOG_OPERATION
-
-请求信息表(子表): select * from LOG_REQUEST 
-
-两表间关联字段为: LOG_REQUEST 表中的 OPERATION_ID 列
-
-原 LOG_OPERATION_1 表可以被删除了
+示例: "_log": "{'moduleId':'moduleId','funcId':'funcId'}"
