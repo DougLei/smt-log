@@ -32,7 +32,7 @@ smt:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:sqlserver://localhost:1433;DatabaseName=SMT_ALL
+    url: jdbc:sqlserver://192.168.1.222:1433;DatabaseName=SMT_ALL
     username: sa
     password: root
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
