@@ -35,6 +35,5 @@ spring:
     url: jdbc:sqlserver://192.168.1.222:1433;DatabaseName=SMT_ALL
     username: sa
     password: root
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
   application:
     name: smt-log
