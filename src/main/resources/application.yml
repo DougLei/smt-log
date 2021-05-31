@@ -13,7 +13,7 @@ jdb:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.252:8501/eureka/
+      defaultZone: http://192.168.1.200:8501/eureka/
 
 smt:
   parent:
