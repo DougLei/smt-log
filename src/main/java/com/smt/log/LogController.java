@@ -35,6 +35,8 @@ public class LogController {
 	@RequestMapping(value="/add_", method=RequestMethod.POST)
 	public Response add_(@RequestBody LogOperation operation, HttpServletRequest request) {
 		// TODO 后期要去判断是否是合法的调用方来调用该接口
+		if(operation.getUserId() == null)
+			operation.setUserId("unknow");
 		return service.add(operation);
 	}
 	
