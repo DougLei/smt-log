@@ -1,0 +1,2 @@
+select operation.id, operation.client_ip, operation.oper_date, request.api_addr, request.REQ_BODY, request.RESP_BODY from LOG_OPERATION operation
+	left join LOG_REQUEST request on (request.OPERATION_ID= operation.id) where operation_id is not null order by operation.id desc
