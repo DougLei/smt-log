@@ -4,7 +4,7 @@
 		<columns>
 			<column name="ID" property="id" dataType="number" length="10" />
 			<column name="OPERATION_ID" property="operationId" dataType="number" length="1" nullable="false"/>
-			<column name="API_ADDR" property="apiAddr" dataType="string" length="200" nullable="false"/>
+			<column name="URL" property="url" dataType="string" length="400" nullable="false"/>
 			<column name="METHOD" property="method" dataType="string" length="7" nullable="false"/>
 			<column name="URL_DATA" property="urlData" dataType="string" length="500"/>
 			<column name="REQ_BODY" property="reqBody" dataType="clob"/>
