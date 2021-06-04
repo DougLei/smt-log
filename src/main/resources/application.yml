@@ -13,7 +13,7 @@ jdb:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.200:8501/eureka/
+      defaultZone: http://192.168.1.111:8501/eureka/
 
 smt:
   parent:
@@ -32,7 +32,7 @@ smt:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:sqlserver://192.168.1.111:1433;DatabaseName=TEMP_SMT_LOG
+    url: jdbc:sqlserver://192.168.1.111:1433;DatabaseName=SMT_LOG
     username: sa
     password: 123_abc
   application:
