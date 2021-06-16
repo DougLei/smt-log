@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping-configuration>
+	<property supportCover="false" supportDelete="true"/>
+	<table name="LOG_REQUEST_%d" createMode="create" strict="true">
+		<columns>
+			<column name="ID" dataType="number" length="10" />
+			<column name="OPERATION_ID" dataType="number" length="1" nullable="false"/>
+			<column name="URL" dataType="string" length="400" nullable="false"/>
+			<column name="METHOD" dataType="string" length="7" nullable="false"/>
+			<column name="URL_DATA" dataType="string" length="500"/>
+			<column name="REQ_BODY" dataType="clob"/>
+			<column name="REQ_DATE" dataType="datetime" nullable="false"/>
+			<column name="RESP_BODY" dataType="clob"/>
+			<column name="RESP_DATE" dataType="datetime" nullable="false"/>
+			<column name="STATE" dataType="number" length="1" nullable="false"/>
+			<column name="ORDER_" dataType="number" length="2" nullable="false"/>
+			<column name="DESCRIPTION" dataType="nstring" length="100" />
+		</columns>
+		
+		<constraints>
+			<constraint type="PRIMARY_KEY" isAutoIncrement="true">
+				<column name="ID" />
+			</constraint>
+		</constraints>
+	</table>
+</mapping-configuration>

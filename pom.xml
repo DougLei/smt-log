@@ -10,4 +10,18 @@
 	<groupId>com.smt.log</groupId>
 	<artifactId>smt-log</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>com/smt/parent/code/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

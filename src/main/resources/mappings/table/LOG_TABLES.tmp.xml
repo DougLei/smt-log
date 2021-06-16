@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping-configuration>
+	<table name="LOG_TABLES" class="com.smt.log.tables.LogTables" createMode="create" strict="true">
+		<columns>
+			<column name="ID" property="id" dataType="number" length="10" />
+			<column name="CREATE_USER_ID" property="createUserId" dataType="char" length="36" nullable="false"/>
+			<column name="CREATE_DATE" property="createDate" dataType="datetime" nullable="false"/>
+			<column name="PROJECT_CODE" property="projectCode" dataType="string" length="50" nullable="false" />
+			<column name="TENANT_ID" property="tenantId" dataType="char" length="36" nullable="false"/>
+			<column name="IS_DELETED" property="isDeleted" dataType="number" length="1" nullable="false"/>
+		</columns>
+		
+		<constraints>
+			<constraint type="PRIMARY_KEY" isAutoIncrement="true">
+				<column name="ID" />
+			</constraint>
+		</constraints>
+	</table>
+</mapping-configuration>

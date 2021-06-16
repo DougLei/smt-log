@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping-configuration>
+	<!-- 查询日志列表 -->
+	<sql-query name="QueryLogList">
+		<content>
+			select * from log_operation_#{id, dataType=number, length=10}
+		</content>
+		
+		<parameters>
+			<parameter name="type_" dataType="number" />	
+			<parameter name="level_" dataType="number" />
+			<parameter name="client_ip" dataType="string" />
+			<parameter name="user_id" dataType="string" />
+			<parameter name="oper_date" dataType="datetime" />
+		</parameters>	
+	</sql-query>
+</mapping-configuration>

@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.douglei.orm.spring.boot.starter.TransactionComponentScan;
+
 /**
  * 
  * @author DougLei
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableEurekaClient
 @SpringBootApplication
 @ComponentScan("com.smt")
+@TransactionComponentScan(packages = "com.smt")
 public class SmtLogApplication {
 
 	public static void main(String[] args) {
