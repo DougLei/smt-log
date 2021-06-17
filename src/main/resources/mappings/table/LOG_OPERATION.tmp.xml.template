@@ -14,7 +14,7 @@
 			<column name="COMPONENT_NAME" dataType="nstring" length="100" />
 			<column name="FUNC_ID" dataType="char" length="36" />
 			<column name="FUNC_NAME" dataType="nstring" length="100" />
-			<column name="CLIENT_IP" dataType="string" length="20" />
+			<column name="CLIENT_IP" dataType="string" length="20" nullable="false"/>
 			<column name="USER_ID" dataType="char" length="36" nullable="false"/>
 			<column name="OPER_DATE" dataType="datetime" nullable="false"/>
 		</columns>

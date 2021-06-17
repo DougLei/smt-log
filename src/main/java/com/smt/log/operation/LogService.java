@@ -76,7 +76,18 @@ public class LogService {
 				request.setOrder(Integer.parseInt(SessionContext.getSqlSession().uniqueQuery_("select count(id) from log_request_"+tableId+" where operation_id=?", Arrays.asList(operation.getId()))[0].toString()));
 			SessionContext.getTableSession().save("LOG_REQUEST_"+tableId, request.toMap());
 		}
-		return new Response(operation.getId());
+		return new Response(true);
+	}
+	
+	/**
+	 * 记录错误token的日志
+	 * @param operation
+	 * @return
+	 */
+	@Transaction
+	public Response add4ErrorToken(LogOperation operation) {
+		SessionContext.getTableSession().save("LOG_ERROR_TOKEN", operation.toErrorTokenMap());
+		return new Response(true);
 	}
 
 	/**

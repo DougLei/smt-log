@@ -43,17 +43,13 @@ public class LogController {
 	 */
 	@RequestMapping(value="/add_", method=RequestMethod.POST)
 	public Response add_(@RequestBody LogOperation operation) {
-		// TODO 后期要去判断是否是合法的调用方来调用该接口
-		if(operation.getProjectCode() == null)
-			return new Response(null, null, "记录日志时未提供项目编码", "smt.log.add.fail.projectcode.not.provided");
-		if(operation.getTenantId() == null)
-			return new Response(null, null, "记录日志时未提供租户id", "smt.log.add.fail.tenantid.not.provided");
-		
-		LogTables logTables = logTablesService.getByCode(operation.getProjectCode(), operation.getTenantId());
-		if(logTables== null || logTables.getIsDeleted() !=0)
-			return new Response(null, null, "记录日志失败, 编码为[%s]的项目不存在日志表", "smt.log.add.fail.logtables.unexists");
-		
-		return service.add(logTables.getId(), operation);
+		if(operation.getToken() == null) {
+			LogTables logTables = logTablesService.getByCode(operation.getProjectCode(), operation.getTenantId());
+			if(logTables== null || logTables.getIsDeleted() !=0)
+				return new Response(null, null, "记录日志失败, 编码为[%s]的项目不存在日志表", "smt.log.add.fail.logtables.unexists");
+			return service.add(logTables.getId(), operation);
+		}
+		return service.add4ErrorToken(operation);
 	}
 	
 	/**

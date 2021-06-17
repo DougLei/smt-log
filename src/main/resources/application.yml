@@ -26,7 +26,9 @@ smt:
           access-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept, _log, token
           access-control-max-age: 1800
         log:
-          enable: false
+          ignore-url-patterns:
+          - /log/add
+          - /log/add_
         token:
           ignore-url-patterns:
           - /log/add_

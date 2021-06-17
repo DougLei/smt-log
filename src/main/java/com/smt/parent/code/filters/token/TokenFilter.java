@@ -21,7 +21,6 @@ import org.springframework.http.HttpMethod;
 import com.alibaba.fastjson.JSONObject;
 import com.douglei.tools.ExceptionUtil;
 import com.douglei.tools.StringUtil;
-import com.smt.parent.code.SmtParentException;
 import com.smt.parent.code.filters.FilterEnum;
 import com.smt.parent.code.filters.log.LogContext;
 import com.smt.parent.code.response.Response;
@@ -56,20 +55,18 @@ public class TokenFilter implements Filter {
 	// 验证token
 	private boolean validate(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		TokenValidateResult result = validate_(req);
-		
-		// 记录日志关联用户/项目/租户的唯一标识
 		TokenEntity entity = result.getEntity();
-		if(entity != null) 
-			LogContext.loggingIds(entity.getUserId(), entity.getProjectCode(), entity.getTenantId());
 			
-		// 验证成功, 则记录token数据, 并继续
+		// 验证成功, 则在日志中记录用户/项目/租户的唯一标识, 并记录token数据
 		if(result.isSuccess()) {
+			LogContext.loggingIds(entity.getUserId(), entity.getProjectCode(), entity.getTenantId());
 			TokenContext.set(entity);
 			return true;
 		}
 		
-		// 验证失败, 输出失败的具体信息, 并记录日志
+		// 验证失败, 日志记录token值和响应体, 并输出失败的具体信息
 		Response response = new Response(null, null, result.getMessage(), result.getCode(), result.getParams());
+		LogContext.loggingToken(result.getToken());
 		LogContext.loggingResponse(response, true);
 		ResponseUtil.writeJSON(resp, response.toJSONString());
 		return false;
@@ -80,12 +77,12 @@ public class TokenFilter implements Filter {
 		String token_ = req.getHeader("token_");
 		if(StringUtil.unEmpty(token_)) 
 			return new TokenValidateResult(JSONObject.parseObject(URLDecoder.decode(token_, StandardCharsets.UTF_8.name()), TokenEntity.class));
-			
+		
+		String token = req.getHeader(FilterEnum.TOKEN.getHeaderName());
+		if(StringUtil.isEmpty(token))
+			return new TokenValidateResult(token, "token不能为空", "smt.parent.token.filter.validate.isnull");
+		
 		try {
-			String token = req.getHeader(FilterEnum.TOKEN.getHeaderName());
-			if(StringUtil.isEmpty(token))
-				throw new SmtParentException("token不能为空");
-			
 			return restTemplate.exchange(new APIServer() {
 				
 				@Override
@@ -107,7 +104,7 @@ public class TokenFilter implements Filter {
 		} catch (Exception e) {
 			String exceptionId = UUID.randomUUID().toString();
 			logger.error("(同步)验证token异常, exceptionId=[{}], exceptionDetail=\n{}", exceptionId, ExceptionUtil.getStackTrace(e));
-			return new TokenValidateResult(null, "(同步)验证token异常, 联系管理员查看日志, exceptionId=[%s]", "smt.parent.token.filter.validate.exception", exceptionId);
+			return new TokenValidateResult(token, "(同步)验证token异常, 联系管理员查看日志, exceptionId=[%s]", "smt.parent.token.filter.validate.exception", exceptionId);
 		}
 	}
 }
