@@ -21,6 +21,7 @@ import org.springframework.http.HttpMethod;
 import com.alibaba.fastjson.JSONObject;
 import com.douglei.tools.ExceptionUtil;
 import com.douglei.tools.StringUtil;
+import com.smt.parent.code.SmtParentException;
 import com.smt.parent.code.filters.FilterEnum;
 import com.smt.parent.code.filters.log.LogContext;
 import com.smt.parent.code.response.Response;
@@ -77,14 +78,14 @@ public class TokenFilter implements Filter {
 	// 验证token
 	private TokenValidateResult validate_(HttpServletRequest req) throws IOException {
 		String token_ = req.getHeader("token_");
-		if(StringUtil.unEmpty(token_) && token_.startsWith("%7B")) 
+		if(StringUtil.unEmpty(token_)) 
 			return new TokenValidateResult(JSONObject.parseObject(URLDecoder.decode(token_, StandardCharsets.UTF_8.name()), TokenEntity.class));
 			
-		String token = req.getHeader(FilterEnum.TOKEN.getHeaderName());
-		if(StringUtil.isEmpty(token))
-			return new TokenValidateResult(null, "token不能为空", "smt.parent.token.filter.validate.isnull");
-		
 		try {
+			String token = req.getHeader(FilterEnum.TOKEN.getHeaderName());
+			if(StringUtil.isEmpty(token))
+				throw new SmtParentException("token不能为空");
+			
 			return restTemplate.exchange(new APIServer() {
 				
 				@Override
